@@ -1,0 +1,21 @@
+# List of commands to be executed. Use <player> as a placeholder for the player's name.
+commands:
+  - 'kick <player>'
+  - 'say Hello, <player>!'
+
+# Minimum interval (in minutes) between command executions.
+minInterval: 5
+
+# Maximum interval (in minutes) between command executions.
+maxInterval: 15
+
+# If 'fixedInterval' is set to 'true', the interval between command executions will always be equal to 'minInterval'.
+# If 'fixedInterval' is set to 'false', the interval will be a random value between 'minInterval' and 'maxInterval'.
+fixedInterval: false
+
+# If 'chatNotification' is set to 'true', a message will be sent in the chat each time a command is executed.
+chatNotification: true
+
+# This is the message that will be sent in the chat. Use <time> as a placeholder for the interval (in minutes) until the next command execution.
+# You can use standard Minecraft color codes, prefixed by '&'.
+chatMessage: '&6Next command will be executed in <time> minutes.'

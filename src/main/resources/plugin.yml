@@ -1,0 +1,7 @@
+name: RandomCommand
+version: '${project.version}'
+main: com.ashkiano.randomcommand.RandomCommand
+api-version: '1.20'
+authors: [AshKiano]
+description: Casts random commands from config to random players at random time.
+website: https://www.ashkiano.com
