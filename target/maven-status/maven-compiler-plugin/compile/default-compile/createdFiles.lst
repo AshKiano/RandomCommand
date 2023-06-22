@@ -8,6 +8,7 @@ com\ashkiano\randomcommand\Metrics$SingleLineChart.class
 com\ashkiano\randomcommand\Metrics$JsonObjectBuilder.class
 com\ashkiano\randomcommand\Metrics$JsonObjectBuilder$JsonObject.class
 com\ashkiano\randomcommand\Metrics$MultiLineChart.class
+com\ashkiano\randomcommand\RandomCommand$2.class
 com\ashkiano\randomcommand\Metrics$SimpleBarChart.class
 com\ashkiano\randomcommand\Metrics.class
 com\ashkiano\randomcommand\Metrics$1.class
