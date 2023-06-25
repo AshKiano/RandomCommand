@@ -4,11 +4,11 @@ commands:
   - 'give <player> minecraft:diamond 1'
   - 'tp <player> 0 100 0'
 
-# The minimum interval (in minutes) between command executions
-minInterval: 1
+# The minimum interval (in seconds) between command executions
+minInterval: 60
 
-# The maximum interval (in minutes) between command executions
-maxInterval: 2
+# The maximum interval (in seconds) between command executions
+maxInterval: 180
 
 # If true, the interval between command executions will be fixed at the value of minInterval
 fixedInterval: false
@@ -23,5 +23,5 @@ chatMessage: '&6A command has been executed!'
 # If true, a countdown will be displayed in the chat before a command is executed
 countdownEnabled: true
 
-# The interval (in minutes) at which the countdown messages will be displayed
-countdownInterval: 5
+# The interval (in seconds) at which the countdown messages will be displayed
+countdownInterval: 60

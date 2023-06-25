@@ -8,7 +8,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.List;
 import java.util.Random;
 //TODO přidat hex podporu do další verze
-//TODO upravit zobrazování odpočtu a z minut zmenit na vteriny interval odpoctu
+//TODO přidat podporu různých jazyků pro hlášku odpočtu do chatu
+//TODO upravit zobrezení odpočtu aby kombinovaně zobrazoval minuty a vteřiny a ne jen vteřiny
 public class RandomCommand extends JavaPlugin {
     // Store the settings from the config.yml file in variables
     private List<String> commands;
@@ -75,12 +76,12 @@ public class RandomCommand extends JavaPlugin {
                 }
 
                 // Print a message in the console indicating the interval until the next command execution
-                Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Next command will be executed in " + interval + " minutes.");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Next command will be executed in " + interval + " seconds.");
 
                 // Schedule the next command execution
                 runCommandTask();
             }
-        }.runTaskLater(this, (long) interval * 60 * 20); // Convert minutes to Minecraft ticks (20 ticks = 1 second)
+        }.runTaskLater(this, (long) interval * 20); // Convert seconds to Minecraft ticks (20 ticks = 1 second)
     }
 
     // Method to start the countdown
@@ -90,9 +91,9 @@ public class RandomCommand extends JavaPlugin {
 
             @Override
             public void run() {
-                // Broadcast a countdown message at intervals defined in the config, and for the last 5 minutes
+                // Broadcast a countdown message at intervals defined in the config, and for the last 5 seconds
                 if (countdownTime % countdownInterval == 0 || countdownTime <= 5) {
-                    Bukkit.broadcastMessage(ChatColor.GREEN + "Next command will be executed in " + countdownTime + " minutes.");
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "Next command will be executed in " + countdownTime + " seconds.");
                 }
 
                 // Cancel the countdown task when the time is up
@@ -100,6 +101,6 @@ public class RandomCommand extends JavaPlugin {
                     this.cancel();
                 }
             }
-        }.runTaskTimer(this, 0L, 60 * 20); // Convert minutes to Minecraft ticks (20 ticks = 1 second)
+        }.runTaskTimer(this, 0L, 20); // Convert seconds to Minecraft ticks (20 ticks = 1 second)
     }
 }
