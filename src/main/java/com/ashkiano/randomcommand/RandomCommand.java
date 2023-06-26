@@ -2,6 +2,8 @@ package com.ashkiano.randomcommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -29,6 +31,8 @@ public class RandomCommand extends JavaPlugin {
         saveDefaultConfig();
 
         Metrics metrics = new Metrics(this, 18814);
+
+        this.getCommand("randomcommandreload").setExecutor(this);
 
         // Load the settings from the config.yml file
         commands = getConfig().getStringList("commands");
@@ -102,5 +106,27 @@ public class RandomCommand extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, 0L, 20); // Convert seconds to Minecraft ticks (20 ticks = 1 second)
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("randomcommandreload")) {
+            if (sender.hasPermission("randomcommand.reload")) {
+                reloadConfig();
+                commands = getConfig().getStringList("commands");
+                minInterval = getConfig().getInt("minInterval");
+                maxInterval = getConfig().getInt("maxInterval");
+                fixedInterval = getConfig().getBoolean("fixedInterval");
+                chatNotification = getConfig().getBoolean("chatNotification");
+                chatMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("chatMessage"));
+                countdownEnabled = getConfig().getBoolean("countdownEnabled");
+                countdownInterval = getConfig().getInt("countdownInterval");
+                sender.sendMessage(ChatColor.GREEN + "Configuration of the RandomCommand plugin has been successfully reloaded.");
+            } else {
+                sender.sendMessage(ChatColor.RED + "You do not have permission to reload the configuration.");
+            }
+            return true;
+        }
+        return false;
     }
 }
