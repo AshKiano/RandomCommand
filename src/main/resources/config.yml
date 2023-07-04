@@ -25,3 +25,19 @@ countdownEnabled: true
 
 # The interval (in seconds) at which the countdown messages will be displayed
 countdownInterval: 60
+
+# The message to be displayed when a user without permission tries to reload the config
+noPermissionMessage: '&cYou do not have permission to reload the configuration.'
+
+# The message to be displayed when the config is successfully reloaded
+reloadSuccessfulMessage: '&aConfiguration of the RandomCommand plugin has been successfully reloaded.'
+
+# The message to be displayed during the countdown
+countdownMessage: '&aNext command will be executed in <time> seconds.'
+
+# The message to be displayed in the console indicating the time until the next command execution
+nextCommandMessage: 'Next command will be executed in <time> seconds.'
+
+# The message to be displayed in the chat when a command is executed
+commandExecutedMessage: '&6A command has been executed!'
+
