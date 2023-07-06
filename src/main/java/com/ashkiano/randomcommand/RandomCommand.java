@@ -42,14 +42,14 @@ public class RandomCommand extends JavaPlugin {
         maxInterval = getConfig().getInt("maxInterval");
         fixedInterval = getConfig().getBoolean("fixedInterval");
         chatNotification = getConfig().getBoolean("chatNotification");
-        chatMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("chatMessage"));
+        chatMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("chatMessage", "&6A command has been executed!"));
         countdownEnabled = getConfig().getBoolean("countdownEnabled");
         countdownInterval = getConfig().getInt("countdownInterval");
-        noPermissionMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("noPermissionMessage"));
-        reloadSuccessfulMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("reloadSuccessfulMessage"));
-        countdownMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("countdownMessage"));
-        nextCommandMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("nextCommandMessage"));
-        commandExecutedMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("commandExecutedMessage"));
+        noPermissionMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("noPermissionMessage", "&cYou do not have permission to reload the configuration."));
+        reloadSuccessfulMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("reloadSuccessfulMessage", "&aConfiguration of the RandomCommand plugin has been successfully reloaded."));
+        countdownMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("countdownMessage", "&aNext command will be executed in <time> seconds."));
+        nextCommandMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("nextCommandMessage", "Next command will be executed in <time> seconds."));
+        commandExecutedMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("commandExecutedMessage", "&6A command has been executed!"));
 
         // Start the task to execute commands
         runCommandTask();
@@ -125,14 +125,14 @@ public class RandomCommand extends JavaPlugin {
                 maxInterval = getConfig().getInt("maxInterval");
                 fixedInterval = getConfig().getBoolean("fixedInterval");
                 chatNotification = getConfig().getBoolean("chatNotification");
-                chatMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("chatMessage"));
+                chatMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("chatMessage", "&6A command has been executed!"));
                 countdownEnabled = getConfig().getBoolean("countdownEnabled");
                 countdownInterval = getConfig().getInt("countdownInterval");
-                noPermissionMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("noPermissionMessage"));
-                reloadSuccessfulMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("reloadSuccessfulMessage"));
-                countdownMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("countdownMessage"));
-                nextCommandMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("nextCommandMessage"));
-                commandExecutedMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("commandExecutedMessage"));
+                noPermissionMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("noPermissionMessage", "&cYou do not have permission to reload the configuration."));
+                reloadSuccessfulMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("reloadSuccessfulMessage", "&aConfiguration of the RandomCommand plugin has been successfully reloaded."));
+                countdownMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("countdownMessage", "&aNext command will be executed in <time> seconds."));
+                nextCommandMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("nextCommandMessage", "Next command will be executed in <time> seconds."));
+                commandExecutedMessage = ChatColor.translateAlternateColorCodes('&', getConfig().getString("commandExecutedMessage", "&6A command has been executed!"));
                 sender.sendMessage(ChatColor.GREEN + reloadSuccessfulMessage);
             } else {
                 sender.sendMessage(ChatColor.RED + noPermissionMessage);
