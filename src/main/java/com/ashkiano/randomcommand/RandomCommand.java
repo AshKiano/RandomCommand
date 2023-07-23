@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 //TODO přidat hex podporu do další verze
@@ -14,7 +16,7 @@ import java.util.Random;
 //TODO upravit zobrezení odpočtu aby kombinovaně zobrazoval minuty a vteřiny a ne jen vteřiny
 public class RandomCommand extends JavaPlugin {
     // Variables to store the settings from the config.yml file
-    private List<String> commands;
+    private List<List<String>> commands;
     private int minInterval, maxInterval;
     private boolean fixedInterval;
     private boolean chatNotification;
@@ -37,7 +39,19 @@ public class RandomCommand extends JavaPlugin {
         this.getCommand("randomcommandreload").setExecutor(this);
 
         // Load the settings from the config.yml file
-        commands = getConfig().getStringList("commands");
+        List<List<String>> commandGroups = new ArrayList<>();
+        for (Object commandGroupObject : getConfig().getList("commands")) {
+            if (commandGroupObject instanceof List) {
+                List<String> commandGroup = new ArrayList<>();
+                for (Object commandObject : (List<?>) commandGroupObject) {
+                    if (commandObject instanceof String) {
+                        commandGroup.add((String) commandObject);
+                    }
+                }
+                commandGroups.add(commandGroup);
+            }
+        }
+        commands = commandGroups;
         minInterval = getConfig().getInt("minInterval");
         maxInterval = getConfig().getInt("maxInterval");
         fixedInterval = getConfig().getBoolean("fixedInterval");
@@ -71,14 +85,16 @@ public class RandomCommand extends JavaPlugin {
             public void run() {
                 // Only execute a command if there are online players
                 if (Bukkit.getOnlinePlayers().size() > 0) {
-                    // Choose a random command from the list
-                    String command = commands.get(random.nextInt(commands.size()));
+                    // Choose a random command group from the list
+                    List<String> commandGroup = commands.get(random.nextInt(commands.size()));
 
                     // Choose a random online player
                     Player player = (Player) Bukkit.getOnlinePlayers().toArray()[random.nextInt(Bukkit.getOnlinePlayers().size())];
 
-                    // Execute the command
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("<player>", player.getName()));
+                    // Execute all commands in the group
+                    for (String command : commandGroup) {
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("<player>", player.getName()));
+                    }
 
                     // If chatNotification is enabled, send a message in the chat
                     if(chatNotification) {
@@ -120,7 +136,19 @@ public class RandomCommand extends JavaPlugin {
         if (command.getName().equalsIgnoreCase("randomcommandreload")) {
             if (sender.hasPermission("randomcommand.reload")) {
                 reloadConfig();
-                commands = getConfig().getStringList("commands");
+                List<List<String>> commandGroups = new ArrayList<>();
+                for (Object commandGroupObject : getConfig().getList("commands")) {
+                    if (commandGroupObject instanceof List) {
+                        List<String> commandGroup = new ArrayList<>();
+                        for (Object commandObject : (List<?>) commandGroupObject) {
+                            if (commandObject instanceof String) {
+                                commandGroup.add((String) commandObject);
+                            }
+                        }
+                        commandGroups.add(commandGroup);
+                    }
+                }
+                commands = commandGroups;
                 minInterval = getConfig().getInt("minInterval");
                 maxInterval = getConfig().getInt("maxInterval");
                 fixedInterval = getConfig().getBoolean("fixedInterval");
