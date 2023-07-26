@@ -67,6 +67,8 @@ public class RandomCommand extends JavaPlugin {
 
         // Start the task to execute commands
         runCommandTask();
+
+        System.out.println("Thank you for using the RandomCommand plugin! If you enjoy using this plugin, please consider making a donation to support the development. You can donate at: https://paypal.me/josefvyskocil");
     }
 
     // Method to run the command task

@@ -1,8 +1,11 @@
 # List of commands to be randomly executed
 commands:
-  - 'say Hello, <player>!'
-  - 'give <player> minecraft:diamond 1'
-  - 'tp <player> 0 100 0'
+  -
+    - 'say Hello, <player>!'
+    - 'give <player> minecraft:diamond 1'
+  -
+    - 'tp <player> 0 100 0'
+    - 'say You have been teleported, <player>!'
 
 # The minimum interval (in seconds) between command executions
 minInterval: 60
