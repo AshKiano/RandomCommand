@@ -14,6 +14,7 @@ import java.util.Random;
 //TODO přidat hex podporu do další verze
 //TODO přidat podporu různých jazyků pro hlášku odpočtu do chatu
 //TODO upravit zobrezení odpočtu aby kombinovaně zobrazoval minuty a vteřiny a ne jen vteřiny
+//TODO přidat možnost spusti příkaz jako hráč a ne jako konzole
 public class RandomCommand extends JavaPlugin {
     // Variables to store the settings from the config.yml file
     private List<List<String>> commands;
@@ -68,7 +69,7 @@ public class RandomCommand extends JavaPlugin {
         // Start the task to execute commands
         runCommandTask();
 
-        System.out.println("Thank you for using the RandomCommand plugin! If you enjoy using this plugin, please consider making a donation to support the development. You can donate at: https://paypal.me/josefvyskocil");
+        this.getLogger().info("Thank you for using the RandomCommand plugin! If you enjoy using this plugin, please consider making a donation to support the development. You can donate at: https://paypal.me/josefvyskocil");
     }
 
     // Method to run the command task
