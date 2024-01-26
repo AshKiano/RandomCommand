@@ -1,5 +1,5 @@
 name: RandomCommand
-version: '1.7'
+version: '1.11'
 main: com.ashkiano.randomcommand.RandomCommand
 api-version: '1.20'
 authors: [AshKiano]
